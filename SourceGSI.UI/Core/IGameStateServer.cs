@@ -1,4 +1,5 @@
 ﻿using System;
+using SourceGSI.UI.Core.Entities;
 
 namespace SourceGSI.UI.Core
 {
@@ -6,7 +7,8 @@ namespace SourceGSI.UI.Core
     {
         event EventHandler<GameStateEventArgs> ReceivedGameState;
 
-        string CurrentGameState { get; }
+        string RawJson { get; }
+        GameState GameState { get; }
 
         void Start();
         void Stop();

@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using SourceGSI.UI.Core;
+using SourceGSI.UI.Core.Entities;
 
 namespace SourceGSI.UI.Screens
 {
@@ -7,7 +8,8 @@ namespace SourceGSI.UI.Screens
     {
         private readonly IGameStateServer _gameStateServer;
 
-        public string GameState => _gameStateServer.CurrentGameState ?? "Awaiting Game State";
+        public string RawJson => _gameStateServer.RawJson ?? "Awaiting Game State";
+        public GameState GameState => _gameStateServer.GameState;
 
         public ShellViewModel(IGameStateServer gameStateServer)
         {

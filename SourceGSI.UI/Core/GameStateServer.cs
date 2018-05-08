@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using SourceGSI.UI.Core.Entities;
 
 namespace SourceGSI.UI.Core
 {
@@ -17,7 +18,9 @@ namespace SourceGSI.UI.Core
 
         public bool IsRunning { get; private set; }
 
-        public string CurrentGameState { get; private set; }
+        public string RawJson { get; private set; }
+
+        public GameState GameState { get; private set; }
 
         public void Start()
         {
@@ -67,8 +70,10 @@ namespace SourceGSI.UI.Core
                         response.Close();
                     }
 
-                    CurrentGameState = data;
-                    ReceivedGameState?.Invoke(this, new GameStateEventArgs{GameState = data});
+                    RawJson = data;
+                    GameState = null;
+
+                    SendGameState();
                 }
                 catch (ObjectDisposedException)
                 {
@@ -77,6 +82,15 @@ namespace SourceGSI.UI.Core
             }
 
             _httpListener.Stop();
+        }
+
+        private void SendGameState()
+        {
+            ReceivedGameState?.Invoke(this, new GameStateEventArgs
+            {
+                GameState = GameState,
+                RawJson = RawJson
+            });
         }
 
         public void Dispose()
