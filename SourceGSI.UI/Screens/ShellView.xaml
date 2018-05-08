@@ -8,26 +8,21 @@
         d:DataContext="{d:DesignInstance screens:ShellViewModel}"
         Title="{StaticResource Application_Title}"
         Height="480" Width="480">
-    <StackPanel Background="{StaticResource SecondaryBrush700}">
-        <Grid Height="64" Background="{StaticResource PrimaryBrush700}">
+    <DockPanel Background="{StaticResource SecondaryBrush700}">
+        <Grid DockPanel.Dock="Top"
+              Height="64"
+              VerticalAlignment="Top"
+              Background="{StaticResource PrimaryBrush700}">
             <TextBlock Text="Dota 2 Game State"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
                        Margin="8"
                        FontSize="36"/>
         </Grid>
-        <Label Content="{Binding GameState}"/>
-        
-        <Label Content="Hero Name"/>
-        <TextBox Text="Abaddon"
-                 Margin="8"
+        <TextBox Margin="8"
                  Padding="8"
-                 IsReadOnly="True"/>
-        
-        <Label Content="Health"/>
-        <TextBox Text="1592"
-                 Margin="8"
-                 Padding="8"
-                 IsReadOnly="True"/>
-    </StackPanel>
+                 IsReadOnly="True"
+                 Text="{Binding RawJson, Mode=OneWay}"
+                 VerticalScrollBarVisibility="Auto"/>
+    </DockPanel>
 </Window>
