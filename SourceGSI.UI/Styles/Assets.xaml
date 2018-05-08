@@ -2,6 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
+    <!-- Application Colors -->
+    <Brush x:Key="PrimaryBrush300">#E57373</Brush>
+    <Brush x:Key="PrimaryBrush500">#F44336</Brush>
+    <Brush x:Key="PrimaryBrush700">#D32F2F</Brush>
+    <Brush x:Key="PrimaryBrush900">#B71C1C</Brush>
+
+    <Brush x:Key="SecondaryBrush300">#E0E0E0</Brush>
+    <Brush x:Key="SecondaryBrush500">#9E9E9E</Brush>
+    <Brush x:Key="SecondaryBrush700">#616161</Brush>
+    <Brush x:Key="SecondaryBrush900">#212121</Brush>
+
     <!-- String Resources -->
     <system:String x:Key="Application_Title">SourceGSI</system:String>
 

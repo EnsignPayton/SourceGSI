@@ -49,6 +49,9 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap, Version=4.1.1.372, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.StructureMapAdapter.Unofficial.3.0.5.0\lib\Net40\StructureMap.dll</HintPath>
     </Reference>
@@ -83,6 +86,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\Entities\Ability.cs" />
+    <Compile Include="Core\Entities\Auth.cs" />
+    <Compile Include="Core\Entities\GameState.cs" />
+    <Compile Include="Core\Entities\Hero.cs" />
+    <Compile Include="Core\Entities\Item.cs" />
+    <Compile Include="Core\Entities\Lookup\GameState.cs" />
+    <Compile Include="Core\Entities\Lookup\PlayerActivity.cs" />
+    <Compile Include="Core\Entities\Lookup\PlayerTeam.cs" />
+    <Compile Include="Core\Entities\Map.cs" />
+    <Compile Include="Core\Entities\Player.cs" />
+    <Compile Include="Core\Entities\Provider.cs" />
     <Compile Include="Core\GameStateEventArgs.cs" />
     <Compile Include="Core\GameStateServer.cs" />
     <Compile Include="Core\IGameStateServer.cs" />
