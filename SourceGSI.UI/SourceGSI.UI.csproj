@@ -86,11 +86,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\DotaApi.cs" />
+    <Compile Include="Core\Entities\Abilities.cs" />
     <Compile Include="Core\Entities\Ability.cs" />
     <Compile Include="Core\Entities\Auth.cs" />
     <Compile Include="Core\Entities\GameState.cs" />
     <Compile Include="Core\Entities\Hero.cs" />
     <Compile Include="Core\Entities\Item.cs" />
+    <Compile Include="Core\Entities\Items.cs" />
     <Compile Include="Core\Entities\Lookup\GameState.cs" />
     <Compile Include="Core\Entities\Lookup\PlayerActivity.cs" />
     <Compile Include="Core\Entities\Lookup\PlayerTeam.cs" />

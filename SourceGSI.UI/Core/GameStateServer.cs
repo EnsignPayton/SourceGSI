@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using SourceGSI.UI.Core.Entities;
 
 namespace SourceGSI.UI.Core
@@ -71,7 +72,7 @@ namespace SourceGSI.UI.Core
                     }
 
                     RawJson = data;
-                    GameState = null;
+                    GameState = JsonConvert.DeserializeObject<GameState>(data);
 
                     SendGameState();
                 }

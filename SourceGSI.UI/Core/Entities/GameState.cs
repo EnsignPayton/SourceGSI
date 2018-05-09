@@ -9,8 +9,7 @@ namespace SourceGSI.UI.Core.Entities
         public Map Map { get; set; }
         public Player Player { get; set; }
         public Hero Hero { get; set; }
-        public IList<Ability> Abilities { get; set; }
-        public IList<Item> Items { get; set; }
-        // TODO: Previously?
+        public Abilities Abilities { get; set; }
+        public Items Items { get; set; }
     }
 }

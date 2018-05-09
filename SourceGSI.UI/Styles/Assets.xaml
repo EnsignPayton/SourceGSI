@@ -12,6 +12,10 @@
     <Brush x:Key="SecondaryBrush500">#9E9E9E</Brush>
     <Brush x:Key="SecondaryBrush700">#616161</Brush>
     <Brush x:Key="SecondaryBrush900">#212121</Brush>
+    
+    <Brush x:Key="HealthBrush">#0C8F05</Brush>
+    <Brush x:Key="ManaBrush">#015287</Brush>
+    <Brush x:Key="BackgroundBrush">#10120F</Brush>
 
     <!-- String Resources -->
     <system:String x:Key="Application_Title">SourceGSI</system:String>

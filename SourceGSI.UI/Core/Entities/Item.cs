@@ -1,11 +1,15 @@
-﻿namespace SourceGSI.UI.Core.Entities
+﻿using Newtonsoft.Json;
+
+namespace SourceGSI.UI.Core.Entities
 {
     public class Item
     {
         public string Name { get; set; }
-        public string CantainsRune { get; set; } // TODO: To enum
+        public int Purchaser { get; set; }
+        [JsonProperty("can_cast")]
         public bool CanCast { get; set; }
         public int Cooldown { get; set; }
+        [JsonProperty("passive")]
         public bool IsPassive { get; set; }
         public int Charges { get; set; }
     }
