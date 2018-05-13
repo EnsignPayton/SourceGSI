@@ -3,25 +3,29 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Caliburn.Micro;
 using Newtonsoft.Json;
 using SourceGSI.UI.Core.Entities;
+using SourceGSI.UI.Core.Events;
 
 namespace SourceGSI.UI.Core
 {
     public sealed class GameStateServer : IGameStateServer, IDisposable
     {
+        private readonly IEventAggregator _eventAggregator;
         private readonly HttpListener _httpListener = new HttpListener();
         private bool _isDisposed;
-
-        public event EventHandler<GameStateEventArgs> ReceivedGameState;
 
         public int Port { get; set; }
 
         public bool IsRunning { get; private set; }
 
-        public string RawJson { get; private set; }
-
         public GameState GameState { get; private set; }
+
+        public GameStateServer(IEventAggregator eventAggregator)
+        {
+            _eventAggregator = eventAggregator;
+        }
 
         public void Start()
         {
@@ -71,10 +75,9 @@ namespace SourceGSI.UI.Core
                         response.Close();
                     }
 
-                    RawJson = data;
                     GameState = JsonConvert.DeserializeObject<GameState>(data);
 
-                    SendGameState();
+                    _eventAggregator.PublishOnUIThread(new GameStateReceived(GameState));
                 }
                 catch (ObjectDisposedException)
                 {
@@ -83,15 +86,6 @@ namespace SourceGSI.UI.Core
             }
 
             _httpListener.Stop();
-        }
-
-        private void SendGameState()
-        {
-            ReceivedGameState?.Invoke(this, new GameStateEventArgs
-            {
-                GameState = GameState,
-                RawJson = RawJson
-            });
         }
 
         public void Dispose()

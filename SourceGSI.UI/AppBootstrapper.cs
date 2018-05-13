@@ -22,17 +22,19 @@ namespace SourceGSI.UI
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            // TODO: Get port from config file / args
-            _gameStateServer = new GameStateServer {Port = 3001};
-
             var container = new Container(_ =>
             {
                 _.For<IServiceLocator>().Use(__ => _serviceLocator);
+                _.For<IEventAggregator>().Singleton().Use<EventAggregator>();
                 _.For<IWindowManager>().Singleton().Use<WindowManager>();
-                _.For<IGameStateServer>().Use(__ => _gameStateServer);
+                _.For<IWindowConductor>().Singleton().Use<ShellViewModel>();
+                _.For<IGameStateServer>().Singleton().Use<GameStateServer>();
             });
 
             _serviceLocator = new StructureMapServiceLocator(container);
+            _gameStateServer = _serviceLocator.GetInstance<IGameStateServer>();
+            _gameStateServer.Port = 3001; // TODO: Read from config
+            _gameStateServer.Start();
 
             DisplayRootViewFor<ShellViewModel>();
         }

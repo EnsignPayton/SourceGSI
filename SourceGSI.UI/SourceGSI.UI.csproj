@@ -100,9 +100,16 @@
     <Compile Include="Core\Entities\Map.cs" />
     <Compile Include="Core\Entities\Player.cs" />
     <Compile Include="Core\Entities\Provider.cs" />
-    <Compile Include="Core\GameStateEventArgs.cs" />
+    <Compile Include="Core\Events\GameStateReceived.cs" />
     <Compile Include="Core\GameStateServer.cs" />
     <Compile Include="Core\IGameStateServer.cs" />
+    <Compile Include="Core\IWindowConductor.cs" />
+    <Compile Include="Screens\DashboardView.xaml.cs">
+      <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\DashboardViewModel.cs">
+      <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
@@ -139,11 +146,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Screens\DashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Screens\ShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Assets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

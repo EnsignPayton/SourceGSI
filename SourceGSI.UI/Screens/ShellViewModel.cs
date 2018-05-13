@@ -1,40 +1,58 @@
 ﻿using Caliburn.Micro;
 using SourceGSI.UI.Core;
-using SourceGSI.UI.Core.Entities;
+using System;
 
 namespace SourceGSI.UI.Screens
 {
-    public class ShellViewModel : Conductor<IScreen>
+    public class ShellViewModel : Conductor<IScreen>, IWindowConductor
     {
-        private readonly IGameStateServer _gameStateServer;
+        private readonly IWindowManager _windowManager;
 
-        public string RawJson => _gameStateServer.RawJson ?? "Awaiting Game State";
-        public GameState GameState => _gameStateServer.GameState;
-
-        public string Name => DotaApi.HeroNames.TryGetValue(GameState?.Hero?.Name ?? string.Empty, out string result) ? result : GameState?.Hero?.Name;
-        public string Health => $"{GameState?.Hero?.Health ?? 0} / {GameState?.Hero?.MaxHealth ?? 0}";
-        public string Mana => $"{GameState?.Hero?.Mana ?? 0} / {GameState?.Hero?.MaxMana ?? 0}";
-
-        public ShellViewModel(IGameStateServer gameStateServer)
+        public ShellViewModel(IWindowManager windowManager)
         {
-            _gameStateServer = gameStateServer;
+            _windowManager = windowManager;
         }
 
         protected override void OnInitialize()
         {
-            _gameStateServer.ReceivedGameState += ReceivedGameState;
-            _gameStateServer.Start();
+            Show<DashboardViewModel>();
 
             base.OnInitialize();
         }
 
-        private void ReceivedGameState(object sender, GameStateEventArgs e)
+        #region IWindowConductor
+
+        public void Show<T>(Action<T> initAction = null) where T : IScreen
         {
-            NotifyOfPropertyChange(() => RawJson);
-            NotifyOfPropertyChange(() => GameState);
-            NotifyOfPropertyChange(() => Name);
-            NotifyOfPropertyChange(() => Health);
-            NotifyOfPropertyChange(() => Mana);
+            var screen = IoC.Get<T>();
+            initAction?.Invoke(screen);
+            ActivateItem(screen);
         }
+
+        public T ShowDialog<T>(Action<T> initAction = null) where T : IScreen
+        {
+            var screen = IoC.Get<T>();
+            initAction?.Invoke(screen);
+            _windowManager.ShowDialog(screen);
+            return screen;
+        }
+
+        public T ShowWindow<T>(Action<T> initAction = null) where T : IScreen
+        {
+            var screen = IoC.Get<T>();
+            initAction?.Invoke(screen);
+            _windowManager.ShowWindow(screen);
+            return screen;
+        }
+
+        public T ShowPopup<T>(Action<T> initAction = null) where T : IScreen
+        {
+            var screen = IoC.Get<T>();
+            initAction?.Invoke(screen);
+            _windowManager.ShowPopup(screen);
+            return screen;
+        }
+
+        #endregion
     }
 }

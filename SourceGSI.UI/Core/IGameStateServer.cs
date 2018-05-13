@@ -5,9 +5,7 @@ namespace SourceGSI.UI.Core
 {
     public interface IGameStateServer
     {
-        event EventHandler<GameStateEventArgs> ReceivedGameState;
-
-        string RawJson { get; }
+        int Port { get; set; }
         GameState GameState { get; }
 
         void Start();

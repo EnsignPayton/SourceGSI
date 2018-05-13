@@ -7,36 +7,17 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance screens:ShellViewModel}"
         Title="{StaticResource Application_Title}"
-        Height="600" Width="800">
-    <Window.Resources>
-        <Style x:Key="ReadOnlyTextBox"
-               BasedOn="{StaticResource {x:Type TextBox}}"
-               TargetType="TextBox">
-            <Setter Property="Margin" Value="8"/>
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="IsReadOnly" Value="True"/>
-        </Style>
-        <Style x:Key="PercentProgressBar"
-               BasedOn="{StaticResource {x:Type ProgressBar}}"
-               TargetType="ProgressBar">
-            <Setter Property="Margin" Value="8"/>
-            <Setter Property="Height" Value="32"/>
-            <Setter Property="Minimum" Value="0"/>
-            <Setter Property="Maximum" Value="100"/>
-        </Style>
-        <Style x:Key="StatOverlayTextBlock"
-               BasedOn="{StaticResource {x:Type TextBlock}}"
-               TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="18"/>
-        </Style>
-    </Window.Resources>
-    <DockPanel Background="{StaticResource SecondaryBrush700}">
-        <Grid DockPanel.Dock="Top"
-              Height="64"
-              VerticalAlignment="Top"
+        MinWidth="800"
+        MinHeight="250"
+        Width="800"
+        Height="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="146"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
               Background="{StaticResource PrimaryBrush700}">
             <TextBlock Text="Dota 2 Game State"
                        VerticalAlignment="Center"
@@ -44,41 +25,7 @@
                        Margin="8"
                        FontSize="36"/>
         </Grid>
-        <TabControl Background="{StaticResource SecondaryBrush700}">
-            <TabItem Header="Hero Details">
-                <StackPanel>
-                    <Label Content="Hero Name"/>
-                    <TextBox Style="{StaticResource ReadOnlyTextBox}"
-                             Text="{Binding Name, Mode=OneWay}"/>
-                    <Label Content="Health"/>
-                    <Grid>
-                        <TextBlock Style="{StaticResource StatOverlayTextBlock}"
-                                   Text="{Binding Health}"
-                                   Panel.ZIndex="11"/>
-                        <ProgressBar Style="{StaticResource PercentProgressBar}"
-                                     Foreground="{StaticResource HealthBrush}"
-                                     Background="{StaticResource BackgroundBrush}"
-                                     Value="{Binding GameState.Hero.HealthPercent}"
-                                     Panel.ZIndex="10"/>
-                    </Grid>
-                    <Label Content="Mana"/>
-                    <Grid>
-                        <TextBlock Style="{StaticResource StatOverlayTextBlock}"
-                                   Text="{Binding Mana}"
-                                   Panel.ZIndex="11"/>
-                        <ProgressBar Style="{StaticResource PercentProgressBar}"
-                                     Foreground="{StaticResource ManaBrush}"
-                                     Background="{StaticResource BackgroundBrush}"
-                                     Value="{Binding GameState.Hero.ManaPercent}"
-                                     Panel.ZIndex="10"/>
-                    </Grid>
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="Raw JSON">
-                <TextBox Style="{StaticResource ReadOnlyTextBox}"
-                         Text="{Binding RawJson, Mode=OneWay}"
-                         VerticalScrollBarVisibility="Auto"/>
-            </TabItem>
-        </TabControl>
-    </DockPanel>
+        <ContentControl x:Name="ActiveItem"
+                        Grid.Row="2"/>
+    </Grid>
 </Window>

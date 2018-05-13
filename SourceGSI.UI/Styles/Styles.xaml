@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="PercentProgressBar"
+           BasedOn="{StaticResource {x:Type ProgressBar}}"
+           TargetType="ProgressBar">
+        <Setter Property="Height" Value="26"/>
+        <Setter Property="Minimum" Value="0"/>
+        <Setter Property="Maximum" Value="100"/>
+    </Style>
+
+    <Style x:Key="StatOverlayTextBlock"
+           BasedOn="{StaticResource {x:Type TextBlock}}"
+           TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="18"/>
+    </Style>
+
+    <!-- Temporary Dashboard Styles -->
+    <Style x:Key="AbilityShape"
+           TargetType="Shape">
+        <Setter Property="Fill" Value="{StaticResource SecondaryBrush700}"/>
+        <Setter Property="Margin" Value="8"/>
+        <Setter Property="Width" Value="54"/>
+        <Setter Property="Height" Value="54"/>
+    </Style>
+
+    <Style x:Key="InventoryShape"
+           TargetType="Shape">
+        <Setter Property="Fill" Value="{StaticResource SecondaryBrush800}"/>
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="Height" Value="44"/>
+    </Style>
+
+    <Style x:Key="BackpackShape"
+           TargetType="Shape">
+        <Setter Property="Fill" Value="{StaticResource SecondaryBrush800}"/>
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="Height" Value="30"/>
+    </Style>
+
+</ResourceDictionary>
